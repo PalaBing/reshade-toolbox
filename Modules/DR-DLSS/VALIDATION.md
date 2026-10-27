@@ -90,4 +90,4 @@ DLAA 热切换测试未通过：桥接接受请求，OptiScaler 内存中的比�
 
 ### 发布产物
 
-[0.1.2.0 预发布页](https://github.com/VintageVelvet/reshade-toolbox/releases/tag/dr-dlss-v0.1.2.0)的标签对应源码提交 `5ceb12d2aa61c962a250f1d61566ace5ad29d0f2`。附件为 DR.DlssModule.dll 与 SHA256SUMS.txt。DLL 大小 33,792 字节，SHA-256 为 `74F21735EC13B22484BAE74D480B59B20F915854309264BD93F74D0FEA1A7DDF`；发布附件与构建记录核对一致。
+[0.1.2.0 预发布页](https://github.com/PalaBing/reshade-toolbox/releases/tag/dr-dlss-v0.1.2.0)的标签对应源码提交 `5ceb12d2aa61c962a250f1d61566ace5ad29d0f2`。附件为 DR.DlssModule.dll 与 SHA256SUMS.txt。DLL 大小 33,792 字节，SHA-256 为 `74F21735EC13B22484BAE74D480B59B20F915854309264BD93F74D0FEA1A7DDF`；发布附件与构建记录核对一致。

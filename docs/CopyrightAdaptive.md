@@ -17,7 +17,7 @@ CopyrightAdaptive/
 
 主 FX 从同级的 `CopyrightAdaptive/` 文件夹读取新版独立的样式头文件。PNG 继续从现有有效的纹理搜索目录读取，现有安装无须为新版重复配置这些路径。原 `Copyright.fx` 在这里用于定位文件夹，新版运行需要的是已有 PNG、`ReShade.fxh` 和 `Blending.fxh`。
 
-也可以[下载仓库源码 ZIP](https://github.com/VintageVelvet/reshade-toolbox/archive/refs/heads/main.zip)，从其中的 `Shaders/` 取出上面两项复制过去。放好后，`CopyrightAdaptive.fx` 与原 `Copyright.fx` 应在同一目录。
+也可以[下载仓库源码 ZIP](https://github.com/PalaBing/reshade-toolbox/archive/refs/heads/main.zip)，从其中的 `Shaders/` 取出上面两项复制过去。放好后，`CopyrightAdaptive.fx` 与原 `Copyright.fx` 应在同一目录。
 
 ## 启用
 

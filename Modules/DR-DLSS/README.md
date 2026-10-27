@@ -4,7 +4,7 @@
 
 当前版本 **0.1.5.0**（预发布），适配 **DR 2.2.2.0 / Dalamud API 15**。游戏内验证范围见 [VALIDATION.md](VALIDATION.md)。
 
-[下载 DLL](https://github.com/VintageVelvet/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/DR.DlssModule.dll) · [发布页](https://github.com/VintageVelvet/reshade-toolbox/releases/tag/dr-dlss-v0.1.5.0) · [SHA256 校验](https://github.com/VintageVelvet/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/SHA256SUMS.txt)
+[下载 DLL](https://github.com/PalaBing/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/DR.DlssModule.dll) · [发布页](https://github.com/PalaBing/reshade-toolbox/releases/tag/dr-dlss-v0.1.5.0) · [SHA256 校验](https://github.com/PalaBing/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/SHA256SUMS.txt)
 
 ## 安装与使用
 
@@ -45,4 +45,4 @@ K 要求 DLSS 文件版本至少 310.2.0，L/M 至少 310.5.0。模块按检测�
 
 ## 持续维护
 
-在 [`dr-dlss-module`](https://github.com/VintageVelvet/reshade-toolbox/tree/dr-dlss-module/Modules/DR-DLSS) 分支按需适配，上游与检查范围见 [UPSTREAM.md](UPSTREAM.md)。自行构建默认产物为 `out/DR.DlssModule.dll`，构建方法见 [技术说明](TECHNICAL.md#构建与隔离验证)。
+在 [`dr-dlss-module`](https://github.com/PalaBing/reshade-toolbox/tree/dr-dlss-module/Modules/DR-DLSS) 分支按需适配，上游与检查范围见 [UPSTREAM.md](UPSTREAM.md)。自行构建默认产物为 `out/DR.DlssModule.dll`，构建方法见 [技术说明](TECHNICAL.md#构建与隔离验证)。
