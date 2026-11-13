@@ -6,9 +6,21 @@
 
 模块备份 INI 原始字节，再更新相关配置键，保留其他内容。写入由模块完成，桥接负责运行时更新。替换前会检查外部改动；如果其他程序恰好在检查后、替换前写入文件，仍可能发生冲突。
 
-“游戏默认”写入 `RenderPresetOverride=false`、`RenderPresetForAll=0`，将模型请求交还游戏；比例覆盖仍单独保存。[OptiScaler 配置定义](https://github.com/optiscaler/OptiScaler/blob/master/OptiScaler.ini)说明模型覆盖关闭时不强制预设。
+模块写入以下五个配置键：
 
-K 的最低文件版本为 310.2.0，L/M 为 310.5.0。列表、命令与写入共用限制，文件版本未知时只允许游戏默认。模型用途及门槛依据 [NVIDIA DLSS 4.5 说明](https://www.nvidia.com/en-us/geforce/news/dlss-4-5-dynamic-multi-frame-gen-6x-2nd-gen-transformer-super-res/)、[SDK v310.5.3 预设定义](https://github.com/NVIDIA/DLSS/blob/v310.5.3/include/nvsdk_ngx_defs.h)、[Streamline 定义](https://github.com/NVIDIA-RTX/Streamline/blob/main/include/sl_dlss.h)、[310.2 系列发布说明](https://github.com/NVIDIA/DLSS/releases/tag/v310.2.1)及 [310.5.0 发布说明](https://github.com/NVIDIA/DLSS/releases/tag/v310.5.0)。
+| 配置节 | 键 | 写入内容 |
+|---|---|---|
+| `Upscalers` | `Dx11Upscaler` | `dlss`，选择 DX11 的 DLSS 后端 |
+| `DLSS` | `RenderPresetOverride` | K/L/M 时为 `true`，游戏默认时为 `false` |
+| `DLSS` | `RenderPresetForAll` | 所选模型编号；游戏默认为 `0` |
+| `UpscaleRatio` | `UpscaleRatioOverrideEnabled` | `true`，启用全局倍率覆盖 |
+| `UpscaleRatio` | `UpscaleRatioOverrideValue` | 所选挡位的倍率，保留六位小数 |
+
+模块的六个挡位将所选倍率写入上述全局覆盖。OptiScaler 的 `QualityOverrides` 节另有按 DLAA、Ultra Quality、Quality、Balanced、Performance、Ultra Performance 分别设置的六个倍率键，默认值依次为 1.0、1.3、1.5、1.7、2.0、3.0；模块保留这组独立配置。两组覆盖的含义见 [OptiScaler 配置定义](https://github.com/optiscaler/OptiScaler/blob/7c2b6384ce5a0f61b922ed854af565aff2de49f2/OptiScaler.ini)。
+
+“游戏默认”写入 `RenderPresetOverride=false`、`RenderPresetForAll=0`，将模型请求交还游戏；全局倍率覆盖仍单独保存。OptiScaler 在模型覆盖关闭时不强制预设。
+
+K 的最低文件版本为 310.2.0，L/M 为 310.5.0。列表、命令与写入共用限制，文件版本未知时只允许游戏默认。模型用途及门槛依据 [NVIDIA DLSS 4.5 说明](https://www.nvidia.com/en-us/geforce/news/dlss-4-5-dynamic-multi-frame-gen-6x-2nd-gen-transformer-super-res/)、[SDK v310.9.16 预设定义](https://github.com/NVIDIA/DLSS/blob/9981c6350dc58c0ce21f024fd65e31e851c31689/include/nvsdk_ngx_defs.h)、[Streamline 预设定义](https://github.com/NVIDIA-RTX/Streamline/blob/625db07d4bca5abc67d781c42af7e7fb0761f1b6/include/sl_dlss.h)、[310.2 系列发布说明](https://github.com/NVIDIA/DLSS/releases/tag/v310.2.1)及 [310.5.0 发布说明](https://github.com/NVIDIA/DLSS/releases/tag/v310.5.0)。
 
 ## 桥接请求与回执
 
@@ -60,6 +72,8 @@ DLSS 版本取自配置目录中的 nvngx_dlss.dll，初始化和重新读取时
 效果缓存可以减少加载时的编译工作，尺寸变化后仍需重建运行环境。缓存加载与完整着色器编译可能使用同类日志消息，分析耗时时需结合加载路径和时间记录。具体测试结果见 [VALIDATION.md](VALIDATION.md)。
 
 ## 构建与隔离验证
+
+0.1.6.0 源码采用 DR 2.2.8.0 的 `ModuleBehaviour / Behaviour` 声明，并显式实现 `ModuleName`，值为 `OptiScalerDlssController`。`AllDefaultEnabled = true` 保留原配置。DR 2.2.7.1 的基类没有对应的 Behaviour 覆写点，当前源码不能用该版本构建；准备 DR 2.2.8.0 依赖后再执行构建。
 
 在模块目录中运行：
 
