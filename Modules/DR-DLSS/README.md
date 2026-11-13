@@ -8,7 +8,7 @@
 
 已发布的旧版本为 **0.1.5.0**，发布构建基线为 DR 2.2.2.0，后续静态检查截至 DR 2.2.5.1。以下链接保留供历史版本使用，DR 2.2.8.0 请构建当前候选源码：
 
-[旧版 DLL](https://github.com/VintageVelvet/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/DR.DlssModule.dll) · [0.1.5.0 发布页](https://github.com/VintageVelvet/reshade-toolbox/releases/tag/dr-dlss-v0.1.5.0) · [旧版 SHA256 校验](https://github.com/VintageVelvet/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/SHA256SUMS.txt)
+[旧版 DLL](https://github.com/PalaBing/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/DR.DlssModule.dll) · [0.1.5.0 发布页](https://github.com/PalaBing/reshade-toolbox/releases/tag/dr-dlss-v0.1.5.0) · [旧版 SHA256 校验](https://github.com/PalaBing/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/SHA256SUMS.txt)
 
 ## 安装与使用
 
