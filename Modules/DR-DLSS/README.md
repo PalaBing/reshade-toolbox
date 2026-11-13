@@ -49,4 +49,4 @@ K 要求 DLSS 文件版本至少 310.2.0，L/M 至少 310.5.0。模块按检测�
 
 ## 持续维护
 
-在 [`dr-dlss-module`](https://github.com/VintageVelvet/reshade-toolbox/tree/dr-dlss-module/Modules/DR-DLSS) 分支按需适配，上游与检查范围见 [UPSTREAM.md](UPSTREAM.md)。自行构建默认产物为 `out/DR.DlssModule.dll`，构建方法见 [技术说明](TECHNICAL.md#构建与隔离验证)。
+模块主线位于 [`main`](https://github.com/PalaBing/reshade-toolbox/tree/main/Modules/DR-DLSS)。每次依赖适配从 `main` 创建独立分支，完成验证后通过 PR 合入；已合并且无独有工作的分支随后清理。上游与检查范围见 [UPSTREAM.md](UPSTREAM.md)。自行构建默认产物为 `out/DR.DlssModule.dll`，构建方法见 [技术说明](TECHNICAL.md#构建与隔离验证)。
