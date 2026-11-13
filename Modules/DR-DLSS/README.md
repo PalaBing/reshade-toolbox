@@ -2,15 +2,19 @@
 
 手动切换 DLSS 模型与挡位，保存 OptiScaler 配置，并通过桥接请求热切换。通过 DR 的本地模块管理单独加载。
 
-当前版本 **0.1.5.0**（预发布），适配 **DR 2.2.2.0 / Dalamud API 15**。游戏内验证范围见 [VALIDATION.md](VALIDATION.md)。
+当前源码为 **0.1.6.0 适配候选版**，面向 **DR 2.2.8.0 / Dalamud API 15**，尚未发布。DR 更改了模块基类的权限与名称接口，0.1.5.0 的旧声明已无法用于该版本。
 
-[下载 DLL](https://github.com/PalaBing/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/DR.DlssModule.dll) · [发布页](https://github.com/PalaBing/reshade-toolbox/releases/tag/dr-dlss-v0.1.5.0) · [SHA256 校验](https://github.com/PalaBing/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/SHA256SUMS.txt)
+2026-11-13 已使用 **DR 2.2.8.0 官方发布包**与国服 Hooks **26-11-10-01** 构建成功，无编译警告；148 项隔离检查通过。当前候选版不适用于 2.2.7.1 的基类接口，使用前应先更新 DR 至 2.2.8.0。新宿主下的加载、配置读取和热切换仍待游戏内复验，详见 [VALIDATION.md](VALIDATION.md)。
+
+已发布的旧版本为 **0.1.5.0**，发布构建基线为 DR 2.2.2.0，后续静态检查截至 DR 2.2.5.1。以下链接保留供历史版本使用，DR 2.2.8.0 请构建当前候选源码：
+
+[旧版 DLL](https://github.com/PalaBing/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/DR.DlssModule.dll) · [0.1.5.0 发布页](https://github.com/PalaBing/reshade-toolbox/releases/tag/dr-dlss-v0.1.5.0) · [旧版 SHA256 校验](https://github.com/PalaBing/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/SHA256SUMS.txt)
 
 ## 安装与使用
 
 1. 安装并确认 OptiScaler 在游戏中正常加载。热切换需要带本模块桥接接口的版本；使用其他版本时，可保存配置后重启游戏应用。
 2. 准备已有的 `OptiScaler.ini`，通常位于 `ffxiv_dx11.exe` 旁。FF14 和 DR 不会自带此文件；缺失时按 [OptiScaler 安装说明](https://github.com/optiscaler/OptiScaler/wiki/Manual-Installation)，从对应版本安装包取得。
-3. 下载 `DR.DlssModule.dll`，在 DR 本地模块管理中添加该 DLL 的完整路径并启用。
+3. 按上述 DR 版本选择对应的模块产物；当前候选版按 [构建说明](TECHNICAL.md#构建与隔离验证)生成 `DR.DlssModule.dll`，在 DR 本地模块管理中添加 DLL 的完整路径并启用。
 4. 运行 `/pdr dlss`，展开“配置文件”，点击“自动定位”。它使用当前游戏进程目录；自定义配置位置需手动填写完整路径。
 5. “配置目标”出现有效的配置模型、倍率后，选择模型和挡位，点击“写入并刷新生效”。
 

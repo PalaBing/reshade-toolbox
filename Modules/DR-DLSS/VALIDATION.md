@@ -1,6 +1,151 @@
 # 验证记录
 
-记录日期：2026-10-03。本文说明各版本的构建、隔离检查、游戏内测试和已知问题，便于选择版本及复验更新。预发布版本为 `0.1.5.0`；依赖基线为 DR `2.2.2.0` / Dalamud API 15，具体依赖和产物哈希由构建生成的 `out/build-info.json` 记录。
+最近更新：2026-11-13。本文说明各版本的构建、隔离检查、游戏内测试和已知问题。当前源码为 `0.1.6.0` 适配候选版，使用 DR `2.2.8.0` / API 15 官方包完成构建；已发布预发布版仍为 `0.1.5.0`，其发布基线为 DR `2.2.2.0`。各次检查分别记录日期与范围。
+
+## 2026-11-13 适配候选版
+
+### 失败与修复
+
+官方清单的 API 15 渠道为 DR 2.2.8.0。本次先用已安装的 2.2.7.1 构建 0.1.5.0，出现 `CS0246: ModulePermission could not be found`。再用 2.2.8.0 官方包构建原源码，复现相同类型缺失，同时出现 `Permission: no suitable method found to override` 和 `ModuleBase.ModuleName.get` 抽象成员未实现。
+
+实际 Common 元数据核对表明，2.2.7.1 已将权限类型改名为 ModuleBehaviour，但属性仍为 Permission；2.2.8.0 将属性改为 Behaviour，并将 ModuleName 从 virtual 改为 abstract。本次按官方模块用法修改：
+
+- `ModuleBehaviour Behaviour` 继续设置 `AllDefaultEnabled = true`。
+- `ModuleName` 返回 `nameof(OptiScalerDlssController)`，与现有配置文件名一致，配置类与字段保留。
+- 版本标识升为 0.1.6.0，以区分旧依赖构建的 0.1.5.0。
+
+适配后的源码在 2.2.8.0 下构建成功，无警告；在 2.2.7.1 下因 Behaviour 覆写点不存在而失败。本候选以 2.2.8.0 为目标，使用前需先更新 DR。窗口刷新、桥接、INI、快照及模型帮助五个 C# 文件与上次构建的哈希一致。
+
+### 发布包与构建身份
+
+[DR 2.2.8.0 官方包](https://github.com/Dalamud-DailyRoutines/DailyRoutines/releases/tag/2.2.8.0)的 latest.zip 为 21,547,329 字节，SHA-256 `F17A6A189586E7C0B1B9FFE8172854D2083CC270A485D3921304C54473395B3F`，与 GitHub 发布资产 digest 一致。包解压至隔离目录，未替换安装目录。
+
+构建环境为 PowerShell 7.6.9 / .NET 10.0.14、DR 2.2.8.0 官方包、国服 Hooks `26-11-10-01`。在模块目录可用下列命令复现：
+
+```powershell
+./Build.ps1 -PluginDirectory '<DR 2.2.8.0 发布包解压目录>' -HookDirectory '<Hooks 26-11-10-01 目录>' -OutputDirectory './out/compatibility/DR-2.2.8.0'
+```
+
+| 文件 | 完整程序集身份 | SHA-256 |
+|---|---|---|
+| DailyRoutines.dll | `DailyRoutines, Version=2.2.8.0, Culture=neutral, PublicKeyToken=d095e07dca186b72` | `CD49FB69E83C3784BFBE9397388ECD063AF5E3FBD61B08DB9C1A8F1CB62A0735` |
+| DailyRoutines.Common.dll | `DailyRoutines.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d095e07dca186b72` | `26718C087F45288BC50805B5D3421B6AC8D4E40D45C46C85D3824926BFF62290` |
+| OmenTools.dll | `OmenTools, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null` | `3C92DD0ED67695EDCE19D51514EFC6A57ADA381708ED66565115D8588531F7FA` |
+| Dalamud.dll | `Dalamud, Version=15.0.3.9, Culture=neutral, PublicKeyToken=null` | `8BE9012701CE801E53B16E80A0035C402CAA9169E9EC94D5E5033948F9C1E672` |
+| FFXIVClientStructs.dll | `FFXIVClientStructs, Version=7.57.0.9678, Culture=neutral, PublicKeyToken=null` | `3F8BA772322CDDD70A54BBE1F9F19958F5D32CCB55BC92C58B68CFA0C2B5D504` |
+
+候选产物为 `out/compatibility/DR-2.2.8.0/DR.DlssModule.dll`，SHA-256 `EF3B19105335C083251D7E97264B5B946942C326CB88ECE242AD38974D75553B`；同目录 build-info.json 保存依赖与源码哈希。源码分支的 Dalamud 15.0.4.0、FFCS 7.58 同步记录与此处实际 Hooks 身份不同，未将源码分支等同于安装包。
+
+### 检查结果与待验收
+
+现有隔离脚本通过：INI 60 项、快照 42 项、桥接 46 项，共 148 项。检查使用临时配置和随机命名模拟管道，未向游戏发送 set/save。修正前的编译失败与修正后的成功构建验证了此次接口迁移；独立元数据复核确认新声明匹配目标 Common。
+
+候选 DLL 尚未部署或发布。游戏内待验收：DR 2.2.8.0 本地模块加载与列表显示、旧配置读取、两个命令入口与通知、DLAA / Performance 双向热切换的实际尺寸、窗口恢复、取消及重载。历史 GUI 析构回调崩溃保持原状态。图形配置及原生布局的上游检查见 [UPSTREAM.md](UPSTREAM.md#2026-11-13-上游与依赖复核)。
+
+## 2026-10-26 依赖兼容性复核
+
+官方清单确认 API 15 渠道为 [DR 2.2.5.1](https://github.com/Dalamud-DailyRoutines/DailyRoutines/releases/tag/2.2.5.1)，发布于 2026-10-25。本次使用本机已安装的同版本依赖及国服 Hooks `26-10-21-01`，将检查产物写入独立目录；未替换已发布 DLL 或游戏安装文件。七个 C# 源文件哈希与 10 月 17 日构建记录一致。
+
+使用 PowerShell 7 / .NET 10 重新构建成功，无编译警告。复现时在模块目录执行：
+
+```powershell
+./Build.ps1 -PluginDirectory '<DR 2.2.5.1 安装目录>' -HookDirectory '<Hooks 26-10-21-01 目录>' -OutputDirectory './out/compatibility/DR-2.2.5.1'
+```
+
+| 文件 | 完整程序集身份 | SHA-256 |
+|---|---|---|
+| DailyRoutines.dll | `DailyRoutines, Version=2.2.5.1, Culture=neutral, PublicKeyToken=b6b4daf5a48be2fa` | `9792A94BF524241BD25BDBADAD8E767FE1A15C736B5E47AF02D2DCC4647B9B26` |
+| DailyRoutines.Common.dll | `DailyRoutines.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b6b4daf5a48be2fa` | `CFC3B7BA61D6991ED23827E8A6DE82930E0D95F987D604285D5B5471D5741C37` |
+| OmenTools.dll | `OmenTools, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null` | `49AABD6DDE681924A33320057EFB35DF661931C1C9A4052CCA5F25B605383EBD` |
+| Dalamud.dll | `Dalamud, Version=15.0.3.9, Culture=neutral, PublicKeyToken=null` | `AF15D754340C659F9F57C110C9914D8C68A068F588725CAAE50AC237B07DA1C4` |
+| FFXIVClientStructs.dll | `FFXIVClientStructs, Version=7.57.0.9602, Culture=neutral, PublicKeyToken=null` | `5726E301EE5456D526F524E9F88659F38A8717CB527FE4A86D83D1ADE0AB9798` |
+
+产物 `out/compatibility/DR-2.2.5.1/DR.DlssModule.dll` 的 SHA-256 为 `09F3E675E7FA93893EC0A3826C2F69BB60B9B394F53EED220B1258AD94DDAB54`；同目录 `build-info.json` 保存源码和依赖哈希。版本仍为 0.1.5.0，检查产物未发布。
+
+通过 System.Reflection.Metadata 比较上次与本次隔离 DLL，127 个带方法体的方法的所属类型名、方法名、签名字节、IL 字节和局部变量签名一致；316 个成员引用的名称与签名字节一致。该比较未包含异常区域、所有元数据表或宿主实际绑定行为。程序集引用中 Common token 从 `e52b0200c8c3c744` 变为 `b6b4daf5a48be2fa`，Dalamud 从 15.0.3.7 变为 15.0.3.9，FFXIVClientStructs 从 7.57.0.9563 变为 7.57.0.9602；完整 DLL 哈希不同。
+
+上游源码的框架接口与窗口相关结构未发现迁移要求。OmenTools 的服务初始化改为异步分帧，本模块没有调用 Init/Uninit，所用服务取得、通知和子命令接口通过当前依赖构建。源码版本与实际 Hooks 二进制版本分别记录，详见 [上游复核](UPSTREAM.md#2026-10-26-上游与依赖复核)。
+
+本次未发现需修改模块源码或发布替换 DLL 的变化。游戏内待复验：本地模块加载、列表显示、服务就绪后的 `/pdr dlss` 与 `/pdr optidlss`、通知、DLAA / Performance 双向热切换的实际输入尺寸、窗口恢复，以及重载、取消和异常路径。本次未执行插件初始化或向游戏发送请求，历史 GUI 析构回调崩溃保持原记录。
+
+## 2026-10-17 依赖兼容性复核
+
+### 发布包与构建环境
+
+从 [DR 2.2.4.1 官方 Release](https://github.com/Dalamud-DailyRoutines/DailyRoutines/releases/tag/2.2.4.1)下载 `latest.zip`，大小 17,907,988 字节，SHA-256 为 `2223BD2F0C5D5404D0F1DA02B9982E14668F1DE533C57132B86F3D9ED6A61A4C`，与 GitHub 发布资产提供的 digest 一致。检查时本机 DR 为 2.2.3.4；最新包在隔离目录解压，未替换安装目录。
+
+0.1.5.0 的七个 C# 源文件哈希与 10 月 13 日记录一致。使用最新包、国服 Hooks `26-10-14-01`、PowerShell `7.6.5` / .NET `10.0.11` 构建成功，无编译警告。复现时在模块目录执行，并替换两个依赖路径：
+
+```powershell
+./Build.ps1 -PluginDirectory '<DR 2.2.4.1 发布包解压目录>' -HookDirectory '<Hooks 26-10-14-01 目录>' -OutputDirectory './out/compatibility/DR-2.2.4.1'
+```
+
+| 文件 | AssemblyVersion | PublicKeyToken | SHA-256 |
+|---|---|---|---|
+| DailyRoutines.dll | 2.2.4.1 | `e52b0200c8c3c744` | `5685329F353903E914CEA3789B8523662588F9B1EED9145B440A58935062B1A6` |
+| DailyRoutines.Common.dll | 1.0.0.0 | `e52b0200c8c3c744` | `7BC2529698F57AE5A04EAF37F29BBC5988493B288656443587771C2536895550` |
+| OmenTools.dll | 1.0.0.0 | `null` | `04E245875BFF7A31760EBFAE675BCC8BFDAD90F736C40D25C03C3A049C1EB8DE` |
+| Dalamud.dll | 15.0.3.7 | `null` | `3B11B7CB02D2FEC8ECC59D7065732204DB2C2A8CC3CB79A0504FA1C426656FC3` |
+| FFXIVClientStructs.dll | 7.57.0.9563 | `null` | `8E5F778D5D77BECD8B5F21B816F345D2D9578023AEDA867404F92C36F55825CC` |
+
+隔离产物为 `out/compatibility/DR-2.2.4.1/DR.DlssModule.dll`，SHA-256 为 `81046C93F34139A109EE91FD944ACE1981D7B3AE66FF78510C4C78C9A122D4C7`。同目录 `build-info.json` 保存完整程序集身份、源码与依赖哈希；该产物用于兼容性检查，尚未作为新版本发布。
+
+### 接口与依赖身份检查
+
+通过 Mono.Cecil 比较 10 月 13 日和本次隔离产物，两者均有 127 个带方法体的方法，方法完整名称、解析后的指令文本、局部变量类型和异常处理区域一致。程序集引用另行比较：Common 引用新增 `PublicKeyToken=e52b0200c8c3c744`，Dalamud 引用升为 `15.0.3.7`，结构库引用升为 `7.57.0.9563`。这次比较不将两个 DLL 记作字节相同，也不将依赖身份变化记作控制逻辑修改。
+
+Common 版本号未变但新增强名称，需要在后续排查中保留其完整身份。[.NET AssemblyLoadContext 设计说明](https://github.com/dotnet/runtime/blob/v10.0.0/docs/design/features/assemblyloadcontext.md)说明 .NET Core 的程序集绑定忽略强名称 token；仅此标识变化未构成本模块必须改写或重新签名的依据。DR 实际加载和模块过滤行为仍须在宿主内复验。
+
+[国服 Dalamud 增量](https://github.com/ottercorp/Dalamud/compare/de97af586628ca3784786b65af253de565fd44d0...73e74411db3a2d190df705d377bf164180c298b5)只修改版本及结构库 pin；[结构库增量](https://github.com/ottercorp/FFXIVClientStructs/compare/431278ea821354b54485b5b15aa13f72d74c07fc...6adf065d3bc2086694629e47171b5b789ecd42a3)未涉及 Framework、GameWindow、Device 或 SwapChain，10 月 13 日记录的原生字段偏移继续适用。模型定义与配置规则的复核见 [UPSTREAM.md](UPSTREAM.md#2026-10-17-上游与依赖复核)。
+
+### 结果与待复验项
+
+本次未发现需要调整模块源码的接口或布局变化，发布版本保持 0.1.5.0。最新包已通过源码构建与上述静态检查；本次未执行插件初始化、未向游戏发送桥接或窗口操作请求。DR 2.2.4.0 新增模块过滤规则，因此游戏内需复验本地 DLL 加载、模块列表显示、两个命令入口，再检查 DLAA / Performance 双向热切换后的实际输入尺寸、窗口恢复，以及模块重载、取消和异常路径。历史 GUI 析构回调崩溃仍保留原状态。
+
+## 2026-10-13 依赖兼容性复核
+
+对 0.1.5.0 源码使用 DR `2.2.3.3` / API 15、国服 Hooks `26-10-13-01` 重新构建，结果成功，无编译警告。构建宿主为 PowerShell `7.6.5` / .NET `10.0.11`；构建仅读取依赖元数据，未向游戏发送设置或刷新请求。
+
+复现时，在模块目录运行以下命令，将占位路径替换为对应版本的实际安装目录：
+
+```powershell
+./Build.ps1 -PluginDirectory '<DR 2.2.3.3 安装目录>' -HookDirectory '<Hooks 26-10-13-01 目录>' -OutputDirectory './out/compatibility/DR-2.2.3.3'
+```
+
+### 测试环境与依赖
+
+| 文件 | AssemblyVersion | SHA-256 |
+|---|---|---|
+| DailyRoutines.dll | 2.2.3.3 | `7558F709D88416220CA4DD7E68AB4D0934F60D4CD4EA1037CAE96815C4ED5934` |
+| DailyRoutines.Common.dll | 1.0.0.0 | `E4F000827A01CA48EC89A305153B70510856EC16FCE2F223D20FA19CFF9011C1` |
+| OmenTools.dll | 1.0.0.0 | `724B1BBB55F0BAA731C83736D9912993D85D8B5D8DBED792C31D5535A6445976` |
+| Dalamud.dll | 15.0.3.6 | `1DBCC7C1471FFEB3D7577BCFCE897428492FD6DF07D65B125E5F3537043BDD8C` |
+| FFXIVClientStructs.dll | 7.57.0.9559 | `4D2DE9C55A4ABC93311F31E2A06B7105283F6F2AC6B0D55929DEF98C658C2F41` |
+
+隔离产物为 `out/compatibility/DR-2.2.3.3/DR.DlssModule.dll`，大小 43,520 字节，SHA-256 为 `F79EA16DC73D766835B644F7D008DE12F05B44C1FD8E79E2A6B8A1C8AA9D3CB0`，源码与依赖哈希由同目录的 `build-info.json` 记录。这是本次检查产物，发布附件仍对应下文的 `0398B45D496A…` 哈希。
+
+### 接口与原生布局检查
+
+对照发布 DLL 与隔离产物，127 个具有 IL 的方法的所属类型名、方法名、签名字节和 IL 字节一致；316 个成员引用的名称和签名字节也一致。两个文件的完整 SHA-256 不同，此项比较只覆盖所列方法和引用数据。
+
+原生布局检查比较国服结构库旧提交 `6e404c6089fbc2ba09c5d810cba7fe7f485f59a1` 与当前提交 `431278ea821354b54485b5b15aa13f72d74c07fc`（[源码差异](https://github.com/ottercorp/FFXIVClientStructs/compare/6e404c6089fbc2ba09c5d810cba7fe7f485f59a1...431278ea821354b54485b5b15aa13f72d74c07fc)），窗口刷新和输出尺寸读取所用字段均未变化：
+
+| 字段 | 两次源码中的偏移 / 类型 |
+|---|---|
+| Framework.GameWindow | `0x07A8` / `GameWindow*` |
+| GameWindow.WindowHandle | `0x18` / `nint` |
+| Device.SwapChain | `0x70` / `SwapChain*` |
+| Device.RequestResolutionChange | `0x7A` / `byte` |
+| Device.NewWidth / NewHeight | `0x9E8` / `0x9EC`，均为 `uint` |
+| SwapChain.Width / Height | `0x38` / `0x3C`，均为 `uint` |
+
+`Framework.Instance()`、`Device.Instance()` 的单例地址签名未变。OmenTools 的通知和命令接口、Dalamud 的框架更新与 ScreenMode 调用未发现需要迁移的变化。完整上游来源与提交见 [UPSTREAM.md](UPSTREAM.md#2026-10-13-上游与依赖复核)。
+
+### 结果与待复验项
+
+本次检查支持继续使用现有 0.1.5.0，无需因上述上游变化修改源码或发布替换 DLL。本次未新增游戏内验收；在 DR 2.2.3.3 / 当前 Hooks 环境中，需复验模块加载、DLAA 与 Performance 双向热切换后的实际输入尺寸、窗口状态恢复，以及重载前后的取消和异常处理。
+
+DR 2.2.3.0 的[更新说明](https://info.atmoomen.top/docs/changelog/v2.2.3.0/)记录了模块实例和程序集回收修复，以及重载时执行完整垃圾回收。0.1.4.0 的 GUI 析构回调崩溃仍保留原记录；验证原崩溃场景后再更新其状态。
 
 ## 0.1.5.0
 
