@@ -1,0 +1,59 @@
+<svg id="poster" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080" width="1920" height="1080" role="img" aria-labelledby="poster-title poster-description">
+     <title id="poster-title">JOURNEY 角色海报原型</title><desc id="poster-description">浅色背景、中央几何占位人物、位于人物前方的大标题、双色图形和底部浮岛。通过右侧控件编辑。</desc>
+     <defs>
+      <radialGradient id="paper-light"><stop offset="0" stop-color="#ffffff" stop-opacity=".66"></stop><stop offset="1" stop-color="#ffffff" stop-opacity="0"></stop></radialGradient>
+      <linearGradient id="orb-light" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".2"></stop><stop offset="1" stop-color="#000000" stop-opacity=".06"></stop></linearGradient>
+      <radialGradient id="grid-fade"><stop offset="0" stop-color="white"></stop><stop offset=".7" stop-color="white" stop-opacity=".75"></stop><stop offset="1" stop-color="black"></stop></radialGradient>
+      <pattern id="grid-pattern" width="68" height="68" patternUnits="userSpaceOnUse"><path d="M68 0H0V68" fill="none" stroke="#a6aaa8" stroke-width="1" stroke-dasharray="1.3 3.5"></path><circle cx="0" cy="0" r="2" fill="#8e9593"></circle></pattern>
+      <mask id="grid-mask"><ellipse cx="982" cy="550" rx="555" ry="555" fill="url(#grid-fade)"></ellipse></mask>
+      <filter id="cloud-soft" x="-25%" y="-80%" width="150%" height="260%"><feGaussianBlur stdDeviation="14"></feGaussianBlur></filter>
+      <radialGradient id="cloud-fade"><stop offset="0" stop-color="#ffffff" stop-opacity=".94"></stop><stop offset="1" stop-color="#ffffff" stop-opacity="0"></stop></radialGradient>
+     </defs>
+     <rect id="background" width="1920" height="1080" fill="#f2f2f2"></rect>
+     <rect width="1920" height="1080" fill="url(#paper-light)"></rect>
+     <g id="grid-layer" opacity=".53"><rect width="1920" height="1080" fill="url(#grid-pattern)" mask="url(#grid-mask)"></rect></g>
+     <g id="platform-layer" transform="translate(979.1999999999999 820.8000000000001) scale(1)">
+      <path d="M-228-14L-188 59L-122 88L-83 126L-25 162L37 115L107 91L175 54L232-14L175-40L0-73L-160-39Z" fill="#b2a08d"></path>
+      <path d="M-188 59L-122 88L-83 126L-25 162L-26 35Z" fill="#998b7e"></path><path d="M37 115L107 91L175 54L145 11L20 34Z" fill="#a79684"></path>
+      <path d="M-228-14L-160-53L-80-72L20-66L124-54L202-34L232-14L176 33L86 51L-18 55L-124 34Z" fill="#d8c7ac"></path>
+      <path d="M-160-22L-95-45L-20-30L-52 5L-118 10Z M42-27L110-35L164-12L123 11L49 12Z M-42 24L8 4L46 16L20 39Z" fill="#a9b49a" opacity=".76"></path>
+      <path d="M-142 30L-115-5L-73 3M-20-66L-9-34L28-12M99 41L110 9L156-7M-79 51L-67 75L-37 91" stroke="#b7a68f" stroke-width="2" fill="none"></path>
+      <ellipse cy="-3" rx="95" ry="15" fill="#4e4943" opacity=".14"></ellipse>
+     </g>
+     <g id="character-layer" aria-label="可拖动的占位人物" transform="translate(979.1999999999999 820.8000000000001) scale(1)">
+      <g id="placeholder-character">
+       <path d="M-29-578C-113-636-187-520-180-373C-147-459-101-496-50-493Z" fill="#8e3e49"></path>
+       <path d="M-106-595Q-193-577-203-502" stroke="#b45561" stroke-width="14" fill="none" stroke-linecap="round"></path>
+       <path d="M59-472L114-372L98-324L38-399Z" fill="#8f454e"></path><path d="M-70-466L-115-351L-83-314L-28-421Z" fill="#a14e57"></path>
+       <path d="M-112-356L-100-315L-76-291L-59-307L-78-350Z M100-336L71-313L57-291L76-279L112-312Z" fill="#dfc4b0"></path>
+       <path d="M-69-292L-80-174L-73-55L-29-55L-17-173L-7-270Z" fill="#45424a"></path><path d="M5-270L27-162L36-54L79-54L79-177L60-290Z" fill="#3b3940"></path>
+       <path d="M-78-80L-29-80L-26-11Q-30 3-81 1L-96-10Z M33-80L79-80L85-12Q80 4 32 1L24-11Z" fill="#2e3035"></path>
+       <path d="M-72-70L-34-70M37-70L75-70" stroke="#8d6867" stroke-width="4"></path>
+       <path d="M-61-483L-99-329L-125-230L-50-192L-8-261L29-200L107-229L81-354L54-482Z" fill="#a9535e"></path>
+       <path d="M-22-474L-43-337L-31-250L14-242L44-347L22-475Z" fill="#30363a"></path>
+       <path d="M-60-483L-20-432L-13-483Z M53-483L19-432L12-483Z" fill="#ebe4d8"></path>
+       <path d="M-9-453L6-453L17-383L2-362L-12-383Z" fill="#c4a866"></path>
+       <path d="M-98-328L-49-318M43-318L86-328" stroke="#bd7a7e" stroke-width="3"></path>
+       <circle cx="4" cy="-303" r="5" fill="#d8bb7a"></circle><circle cx="9" cy="-275" r="5" fill="#d8bb7a"></circle>
+       <path d="M-20-513L-20-477Q0-458 22-477L22-513Z" fill="#d9bba6"></path>
+       <ellipse cy="-560" rx="65" ry="76" fill="#e2c7b2"></ellipse>
+       <path d="M-62-552Q-91-637-5-651Q81-650 68-549L45-576L34-604Q-5-560-62-552Z" fill="#984651"></path>
+       <path d="M-60-590Q-44-629 10-632" stroke="#b8656c" stroke-width="8" fill="none" stroke-linecap="round"></path>
+       <path d="M-57-638Q0-670 60-638L52-651L-46-653Z" fill="#34383b"></path><path d="M-34-651L-29-694L28-694L38-651Z" fill="#36393c"></path><path d="M-30-659L33-659" stroke="#9d5963" stroke-width="9"></path>
+       <path d="M-30-550Q-17-557-8-550M17-550Q29-557 39-550" stroke="#8f6e65" stroke-width="3" fill="none" stroke-linecap="round"></path>
+       <path d="M-8-518Q6-508 20-518" stroke="#b58e83" stroke-width="3" fill="none" stroke-linecap="round"></path>
+       <path d="M-19-472L-41-499L-62-480L-17-450L4-471L23-450L61-482L40-500L17-474Z" fill="#e7dfd3"></path>
+      </g>
+      <image id="custom-character" x="-200" y="-650" width="400" height="650" preserveAspectRatio="xMidYMax meet" style="display:none"></image>
+     </g>
+     
+     <text id="headline" x="960" y="637.2" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="336.47251920917256" fill="#c78080" letter-spacing="0">JOURNEY</text><g id="decoration-layer">
+      <circle id="orb" cx="1517" cy="284" r="74" fill="#64c2cc"></circle><circle cx="1517" cy="284" r="74" fill="url(#orb-light)"></circle>
+      <circle id="yellow-circle" cx="340" cy="591" r="35" fill="#edc801"></circle><path d="M290 623L406 553" fill="none" stroke="#ffffff" stroke-width="5" stroke-dasharray="12 8"></path>
+      <path id="yellow-line" d="M1230 638L1491 399" stroke="#edc801" stroke-width="4" fill="none"></path>
+      <g id="stars" stroke="#f0e088" stroke-width="4" fill="none" stroke-linejoin="round" opacity=".94"><path d="M785 362L794 433L752 388L825 411L763 432L785 362L781 443L813 377L758 409L827 404Z"></path><path d="M1151 316L1180 483L1056 389L1242 382L1091 471L1151 316L1133 489L1228 369L1060 408L1240 389Z"></path></g>
+     </g>
+     <g id="small-type" font-family="'Segoe UI',Arial,sans-serif"><text id="theme-text" x="207" y="372" font-size="29" font-weight="600" letter-spacing="15" fill="#9b6464">CHARACTER STUDY</text><text id="credit-text" x="1740" y="729" text-anchor="end" font-size="59.219235945850826" font-weight="300" letter-spacing="-1.82213033679541" fill="#64c2cc">FFXIV · HALLOWEEN</text></g>
+     <g id="cloud-layer" pointer-events="none"><g fill="#ffffff" opacity=".74" filter="url(#cloud-soft)"><ellipse cx="150" cy="967" rx="390" ry="86"></ellipse><ellipse cx="376" cy="898" rx="224" ry="59"></ellipse><ellipse cx="620" cy="950" rx="175" ry="60"></ellipse><ellipse cx="1713" cy="948" rx="375" ry="96"></ellipse><ellipse cx="1450" cy="894" rx="210" ry="58"></ellipse><ellipse cx="1264" cy="952" rx="210" ry="61"></ellipse></g><ellipse cx="756" cy="938" rx="177" ry="89" fill="url(#cloud-fade)"></ellipse><ellipse cx="1192" cy="943" rx="173" ry="82" fill="url(#cloud-fade)"></ellipse></g>
+     <g id="guide-layer" style="display:none" pointer-events="none" stroke="#538d9b" stroke-width="2" fill="none" opacity=".7"><path d="M173 380H1747V638H173Z" stroke-dasharray="9 8"></path><path d="M980 85V1010" stroke-dasharray="4 8"></path><path id="foot-guide" d="M699.1999999999999 820.8000000000001H1259.1999999999998" stroke-dasharray="4 8"></path></g>
+    </svg>

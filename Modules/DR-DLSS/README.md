@@ -2,7 +2,7 @@
 
 手动切换 DLSS 模型与挡位，保存 OptiScaler 配置，并通过桥接请求热切换。通过 DR 的本地模块管理单独加载。
 
-当前版本 **0.1.5.0**（预发布），适配 **DR 2.2.2.0 / Dalamud API 15**。游戏内验证范围见 [VALIDATION.md](VALIDATION.md)。
+当前版本 **0.1.5.0**（预发布），适配 **DR 2.2.2.0 / Dalamud API 15**。游戏内验证范围见 [VALIDATION.md](docs/VALIDATION.md)。
 
 [下载 DLL](https://github.com/PalaBing/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/DR.DlssModule.dll) · [发布页](https://github.com/PalaBing/reshade-toolbox/releases/tag/dr-dlss-v0.1.5.0) · [SHA256 校验](https://github.com/PalaBing/reshade-toolbox/releases/download/dr-dlss-v0.1.5.0/SHA256SUMS.txt)
 
@@ -38,11 +38,15 @@ K 要求 DLSS 文件版本至少 310.2.0，L/M 至少 310.5.0。模块按检测�
 
 | 文档 | 内容 |
 |---|---|
-| [使用说明](USAGE.md) | 配置路径、读取判断、快捷命令、备份与常见问题 |
-| [技术说明](TECHNICAL.md) | 桥接协议、窗口刷新、ReShade 重建、构建与测试 |
-| [验证记录](VALIDATION.md) | 游戏内验收范围与版本记录 |
-| [来源与许可](PROVENANCE.md) | 来源、许可与分发范围 |
+| [使用说明](docs/USAGE.md) | 配置路径、读取判断、快捷命令、备份与常见问题 |
+| [技术说明](docs/TECHNICAL.md) | 桥接协议、窗口刷新、ReShade 重建、构建与测试 |
+| [验证记录](docs/VALIDATION.md) | 游戏内验收范围与版本记录 |
+| [参考资料索引](references/README.md) | 上游适配基线、来源、许可与分发范围 |
+
+## 目录结构
+
+模块根目录保存 C# 源码和版本声明；`scripts/` 保存构建脚本，`tests/` 保存隔离检查，`docs/` 保存使用、实现与验证文档，`references/` 保存上游和来源资料。构建产物默认写入模块根目录的 `out/`。
 
 ## 持续维护
 
-模块主线位于 [`main`](https://github.com/PalaBing/reshade-toolbox/tree/main/Modules/DR-DLSS)。每次依赖适配从 `main` 创建独立分支，完成验证后通过 PR 合入；已合并且无独有工作的分支随后清理。上游与检查范围见 [UPSTREAM.md](UPSTREAM.md)。自行构建默认产物为 `out/DR.DlssModule.dll`，构建方法见 [技术说明](TECHNICAL.md#构建与隔离验证)。
+模块主线位于 [`main`](https://github.com/PalaBing/reshade-toolbox/tree/main/Modules/DR-DLSS)。每次依赖适配从 `main` 创建独立分支，完成验证后通过 PR 合入；已合并且无独有工作的分支随后清理。上游与检查范围见 [UPSTREAM.md](references/UPSTREAM.md)。自行构建默认产物为 `out/DR.DlssModule.dll`，构建入口为 `scripts/Build.ps1`，具体方法见 [技术说明](docs/TECHNICAL.md#构建与隔离验证)。
