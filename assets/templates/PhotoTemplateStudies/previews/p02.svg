@@ -1,0 +1,41 @@
+<svg id="poster" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" width="1200" height="1600" role="img" aria-labelledby="poster-title poster-description" style="--ink: #17131c; --cream: #fff0c8; --paper: #ff9e19;">
+<title id="poster-title">HALLOWEEN 角色海报</title><desc id="poster-description">橙色纸面、中央角色、黑色路灯与南瓜、奶油白星点。可替换透明 PNG 并编辑。</desc>
+<defs>
+ <filter id="ink-edge" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency=".024" numOctaves="2" seed="7" result="noise"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter>
+ <pattern id="grain" width="93" height="89" patternUnits="userSpaceOnUse"><circle cx="7" cy="12" r=".8" fill="#000" opacity=".12"></circle><circle cx="41" cy="53" r=".65" fill="#fff" opacity=".2"></circle><path d="M70 31h2M21 76h1" stroke="#000" opacity=".1"></path></pattern>
+ <path id="bat" d="M-70 18Q-54-23-27-32L-26-9L-9-10L-5-23L1-14L8-23L13-8L29-7L34-31Q54-17 73 17Q48 5 35 22Q18 6 3 28Q-13 7-31 22Q-48 5-70 18Z"></path>
+ <path id="spark" d="M0-22L6-7L23-6L10 5L14 23L0 13L-16 22L-11 5L-24-6L-6-8Z"></path>
+ <g id="pumpkin"><path d="M-3-64Q-9-91 8-97L20-89L10-63Z" fill="var(--ink)"></path><path d="M-8-63C-55-88-112-44-108 22C-106 85-45 98 0 87C52 103 110 79 108 19C106-45 55-84 12-63" fill="var(--paper)" stroke="var(--ink)" stroke-width="5"></path><path d="M-36-57Q-81 5-42 79M32-58Q77 7 42 80M-89-28Q-111 27-83 60M87-23Q106 26 83 61" fill="none" stroke="var(--ink)" stroke-width="3"></path><path d="M-65-6L-45-37L-23-4ZM24-4L45-37L68-6ZM-10 13L1-7L13 13ZM-72 28L-42 39L-38 29L-19 36L-16 47L16 47L20 35L39 29L44 40L73 27Q56 79 1 72Q-51 76-72 28Z" fill="var(--cream)" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"></path></g>
+</defs>
+<rect id="background" width="1200" height="1600" fill="#ff9e19"></rect>
+<g id="grid-layer" opacity=".7"><rect width="1200" height="1600" fill="url(#grain)"></rect></g>
+<g id="lamp-layer" fill="var(--ink)" stroke="var(--ink)" stroke-linejoin="round" filter="url(#ink-edge)" transform="translate(1200 0) scale(-1 1)">
+ <path d="M965 1346L972 515H985L993 1346L1020 1404H936Z"></path><path d="M965 541L944 519L935 494H1018L1009 520L988 541Z"></path>
+ <path d="M917 336L1040 336L1019 493H937Z" fill="var(--cream)" stroke-width="8"></path><path d="M978 337V491M918 336L941 357L949 489M1037 337L1013 355L1008 489" fill="none" stroke-width="5"></path>
+ <path d="M899 336Q934 318 956 276L1000 276Q1015 313 1056 336ZM953 276L962 261L994 261L1003 276Z"></path>
+ <path d="M973 263V240Q957 221 978 201Q999 223 984 241V263Z"></path><path d="M949 1125L1005 1125L1015 1142L940 1142Z"></path>
+ <path d="M930 1400H1026L1049 1424H909Z"></path><path d="M920 1433H1039" stroke-width="7"></path>
+</g>
+<g id="platform-layer" fill="var(--ink)" filter="url(#ink-edge)" transform="translate(1200 0) scale(-1 1)"><ellipse cx="590" cy="1441" rx="165" ry="5"></ellipse><path d="M144 1454h45m124-4h48m460 8h45m249-8h39" fill="none" stroke="var(--ink)" stroke-width="4"></path><path d="M407 1454l15-6 18 7-21 5Zm306 7l12-5 24 7-17 7Z" fill="var(--cream)" stroke="var(--ink)" stroke-width="3"></path></g>
+<g id="character-layer" aria-label="可拖动的占位人物" transform="translate(576 1440) scale(-1.7 1.7)">
+ <g id="placeholder-character"><path d="M-57-485Q-155-520-150-348L-70-395Z" fill="var(--ink)"></path><path d="M-63-419L-118-172Q-39-125 87-182L54-415Z" fill="var(--ink)"></path><path d="M-55-174L-23-55L3-56L-10-180ZM17-180L32-56L59-56L57-190Z" fill="var(--cream)" stroke="var(--ink)" stroke-width="4"></path><path d="M-24-66L4-66L8-13L-44 0L-61-9L-46-29L-28-31ZM30-66L58-66L65-14L14 0L-1-10L16-31L29-32Z" fill="var(--ink)"></path><path d="M-52-13L-12-21M7-11L49-22" stroke="var(--cream)" stroke-width="3"></path>
+ <path d="M-61-403L-108-329L-178-346L-193-322L-97-287L-27-354ZM49-410L97-296L64-261L15-373Z" fill="var(--ink)"></path><path d="M-177-348L-214-360L-234-345L-228-330L-190-320Z" fill="var(--cream)" stroke="var(--ink)" stroke-width="4"></path>
+ <path d="M-31-448V-416L0-389L24-418V-448" fill="var(--cream)"></path><ellipse cx="-7" cy="-487" rx="65" ry="76" fill="var(--cream)" stroke="var(--ink)" stroke-width="5"></ellipse>
+ <path d="M-70-470Q-93-558-14-567Q63-571 62-479L35-508L13-538L-3-509L-22-536L-42-509L-62-513Z" fill="var(--ink)"></path><path d="M-64-496L-62-425L-95-413L-85-496M48-501L56-417L85-410L69-508Z" fill="var(--ink)"></path>
+ <path d="M-163-555Q-63-589 136-550Q45-512-163-555Z" fill="var(--ink)"></path><path d="M-86-563L-57-685Q-21-651 28-681L84-557Z" fill="var(--ink)"></path><path d="M-78-591Q-6-566 68-591L78-564Q0-540-86-564Z" fill="var(--paper)"></path><path d="M-28-593L-49-622L-66-604L-48-581L-27-589L-5-571L12-589L-4-609Z" fill="var(--cream)" stroke="var(--ink)" stroke-width="3"></path>
+ <path d="M-40-490v19M15-490v19" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"></path><path d="M-23-451Q-10-442 3-452" stroke="var(--ink)" stroke-width="3" fill="none"></path>
+ <path d="M-35-412L-76-390L-47-368L-11-395L18-369L47-393L13-413Z" data-accent="true" fill="#e78323" stroke="var(--ink)" stroke-width="3"></path><path d="M-16-399L-38-321L-8-330L4-400L27-326L48-338L12-405Z" fill="var(--paper)"></path>
+ <path d="M-66-200Q0-178 72-205M-62-189Q0-168 74-193" stroke="var(--cream)" stroke-width="4" fill="none"></path>
+ <g transform="translate(-211 -265) scale(.48)"><path d="M-67-30Q-52-185 62-32" fill="none" stroke="var(--ink)" stroke-width="8"></path><use href="#pumpkin"></use></g>
+ </g><image id="custom-character" x="-220" y="-694" width="440" height="694" preserveAspectRatio="xMidYMax meet" style="display:none"></image>
+</g>
+
+<text id="headline" x="100" y="152" font-family="Georgia,'Times New Roman',serif" font-size="100" font-weight="bold" fill="#17131c" letter-spacing="0">HALLOWEEN</text><g id="decoration-layer" pointer-events="none" transform="translate(1200 0) scale(-1 1)">
+ <g id="pumpkins-layer" filter="url(#ink-edge)"><use href="#pumpkin" transform="translate(276 1344) scale(1.45)"></use><use href="#pumpkin" transform="translate(892 1420) scale(.57) rotate(12)"></use></g>
+ <g id="bats-layer" fill="var(--ink)" filter="url(#ink-edge)"><use href="#bat" transform="translate(231 654) rotate(-27) scale(.7)"></use><use href="#bat" transform="translate(799 586) rotate(9) scale(.8)"></use><use href="#bat" transform="translate(814 1127) rotate(-21) scale(.62)"></use><use href="#bat" transform="translate(417 503) rotate(12) scale(.45)"></use></g>
+ <g id="stars-layer" fill="var(--cream)" filter="url(#ink-edge)"><use href="#spark" transform="translate(273 384) scale(.5) rotate(-13)"></use><use href="#spark" transform="translate(369 442) scale(.95) rotate(12)"></use><use href="#spark" transform="translate(292 560) scale(.7)"></use><use href="#spark" transform="translate(1052 575) scale(.6)"></use><use href="#spark" transform="translate(1039 965) scale(.95) rotate(18)"></use><use href="#spark" transform="translate(287 1031) scale(.65)"></use><use href="#spark" transform="translate(867 735) scale(.45)"></use><path d="M133 790l17 23m0-24l-17 23m51-31l27 31m-1-31l-25 34" stroke="var(--cream)" stroke-width="4" fill="none"></path><circle cx="238" cy="378" r="3"></circle><circle cx="335" cy="1068" r="4"></circle><circle cx="1024" cy="1003" r="3"></circle><circle cx="878" cy="762" r="4"></circle><circle cx="1081" cy="879" r="3"></circle><circle cx="199" cy="889" r="4"></circle></g>
+</g>
+<g id="small-type" fill="#17131c" font-family="'Segoe UI',Arial,sans-serif"><text id="theme-text" x="103" y="69" font-size="19" letter-spacing="5">ALL SAINTS’ WAKE</text><text id="credit-text" x="1095" y="1537" text-anchor="end" font-size="20" letter-spacing="3">FFXIV · CHARACTER COLLECTION</text></g>
+<g id="cloud-layer" pointer-events="none" style="display: none;"><rect x="50" y="30" width="1100" height="1540" rx="3" fill="none" stroke="var(--ink)" stroke-width="1" opacity=".25"></rect></g>
+<g id="guide-layer" style="display:none" fill="none" stroke="#457080" stroke-width="2" stroke-dasharray="8 8" pointer-events="none"><rect x="100" y="190" width="1000" height="1260"></rect><path d="M600 190V1450"></path><path id="foot-guide" d="M326 1440H826"></path></g>
+</svg>

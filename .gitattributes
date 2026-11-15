@@ -2,3 +2,6 @@
 *.fx text eol=lf
 *.fxh text eol=lf
 *.md text eol=lf
+
+# Preserve original bytes of archived template sources and visual assets.
+assets/templates/PhotoTemplateStudies/** -text

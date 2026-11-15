@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P02 · 橙夜魔女</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f2ee;color:#282726;font:14px/1.55 "Segoe UI","Microsoft YaHei",sans-serif}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #558d95;outline-offset:3px}.app{max-width:1720px;margin:auto;padding:28px 32px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:24px}.eyebrow{color:#817b75;font-size:11px;letter-spacing:2px}.topbar h1{margin:4px 0 0;font-size:23px;font-weight:500;letter-spacing:.5px}.actions{display:flex;gap:10px;flex-wrap:wrap}.button{background:transparent;border:1px solid #d4d0c9;border-radius:7px;padding:9px 15px;color:#45423e}.button.primary{background:#343c3d;border-color:#343c3d;color:#fff}.button:hover{filter:brightness(.95)}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:28px;align-items:start}.stage{min-width:0;position:sticky;top:24px}.stage-meta{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px;color:#888178;font-size:12px}.paper{background:#efefef;box-shadow:0 6px 30px #39332313;line-height:0;overflow:hidden}.paper svg{display:block;width:100%;height:auto;touch-action:none}.stage-note{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:#8c857c;font-size:12px;padding-top:14px}.status{color:#807463;min-height:22px;margin-top:12px;font-size:12px}.inspector{background:#fcfbf8;border:1px solid #e5e1da;border-radius:10px;padding:0 18px 18px}details{border-bottom:1px solid #e8e4dd;padding:15px 0}details:last-of-type{border-bottom:0}summary{cursor:pointer;font-weight:500;font-size:13px;list-style-position:outside;margin-left:13px}.fields{padding-top:15px;display:grid;gap:13px}.field{display:grid;gap:6px}.field-line{display:flex;justify-content:space-between;align-items:center;color:#6b665e;font-size:12px}.field-line output{font-variant-numeric:tabular-nums;color:#45433f}input[type=text]{width:100%;min-width:0;border:1px solid #dcd6cd;border-radius:5px;background:#fff;padding:8px 9px;color:#373330}input[type=range]{width:100%;margin:1px 0;accent-color:#6d8f90}input[type=color]{width:36px;height:29px;padding:2px;border:1px solid #dcd6cd;background:transparent;border-radius:5px;cursor:pointer}.color-row{display:flex;justify-content:space-between;align-items:center;gap:10px}.color-label{font-size:12px;color:#625e56}.color-value{display:flex;align-items:center;gap:8px;font-size:11px;color:#8b837b;font-variant-numeric:tabular-nums}.check{display:flex;gap:8px;align-items:center;color:#666056;font-size:12px;cursor:pointer}.check input{accent-color:#6d8f90}.swatches{display:flex;gap:6px;flex-wrap:wrap}.swatch{width:30px;height:26px;border:1px solid #d9d3c9;border-radius:4px;padding:0;background:linear-gradient(135deg,var(--a) 0 55%,var(--b) 55%);cursor:pointer}.swatch[aria-pressed=true]{outline:2px solid #617e80;outline-offset:2px}.help{margin:0;color:#979084;font-size:11px}.footer-action{margin-top:12px}.footer-action label{display:block}.file-button{display:block;text-align:center;border:1px dashed #d1cbc0;border-radius:6px;padding:8px;color:#736d61;font-size:12px;cursor:pointer}.file-button input{display:none}#character-layer{cursor:grab}#character-layer:active{cursor:grabbing}.hint{margin-top:10px;font-size:11px;color:#969084}@media(min-width:1450px){.workspace{grid-template-columns:minmax(0,1fr) 310px}}@media(max-width:960px){.workspace{grid-template-columns:1fr}.stage{position:static}.inspector{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}.footer-action,.hint{grid-column:1/-1}}@media(max-width:570px){.app{padding:18px 14px}.topbar{align-items:start;flex-direction:column;gap:14px;margin-bottom:20px}.topbar h1{font-size:21px}.inspector{display:block}.stage-meta{font-size:11px}.stage-note{gap:4px}.button{padding:8px 12px}input[type=text]{font-size:16px}}
+.export-select{font:inherit;width:100%;padding:8px 9px;border:1px solid #dcd6cd;border-radius:5px;background:#fff;color:#373330}.actions input[type=file]{display:none}#headline,#decoration-layer,#small-type{pointer-events:none}.paper #character-layer{cursor:grab}.safe-note{color:#817466;font-size:11px;margin:0}
+.paper{max-width:570px;margin:0 auto}.stage{top:14px}.paper svg{max-height:calc(100vh - 190px);width:100%;object-fit:contain}.paper{background:transparent;box-shadow:none}.stage-note{max-width:570px;margin:auto}.stage-meta{max-width:570px;margin:0 auto 10px}.status{max-width:570px;margin:12px auto}.app{max-width:1350px}.workspace{grid-template-columns:minmax(0,1fr) 310px}@media(max-width:960px){.workspace{grid-template-columns:1fr}.paper svg{max-height:none}}#lamp-layer,#platform-layer,#cloud-layer{pointer-events:none}</style>
+</head>
+<body>
+<div class="app">
+ <header class="topbar"><div><div class="eyebrow">P02 / HALLOWEEN PAPER STUDY</div><h1>橙夜魔女</h1></div><div class="actions"><button class="button" id="open-project">读取方案</button><input id="project-file" type="file" accept=".json,application/json"><button class="button" id="save-project">保存方案</button><button class="button" id="reset">恢复初始版式</button><button class="button primary" id="export">导出 PNG</button></div></header>
+ <main class="workspace">
+  <section class="stage" aria-label="海报预览">
+   <div class="stage-meta"><span>画布预览</span><span id="export-meta">3:4 · 导出 2880 × 3840</span></div>
+   <div class="paper">
+    <svg id="poster" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" width="1200" height="1600" role="img" aria-labelledby="poster-title poster-description">
+<title id="poster-title">HALLOWEEN 角色海报</title><desc id="poster-description">橙色纸面、中央角色、黑色路灯与南瓜、奶油白星点。可替换透明 PNG 并编辑。</desc>
+<defs>
+ <filter id="ink-edge" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency=".024" numOctaves="2" seed="7" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G"/></filter>
+ <pattern id="grain" width="93" height="89" patternUnits="userSpaceOnUse"><circle cx="7" cy="12" r=".8" fill="#000" opacity=".12"/><circle cx="41" cy="53" r=".65" fill="#fff" opacity=".2"/><path d="M70 31h2M21 76h1" stroke="#000" opacity=".1"/></pattern>
+ <path id="bat" d="M-70 18Q-54-23-27-32L-26-9L-9-10L-5-23L1-14L8-23L13-8L29-7L34-31Q54-17 73 17Q48 5 35 22Q18 6 3 28Q-13 7-31 22Q-48 5-70 18Z"/>
+ <path id="spark" d="M0-22L6-7L23-6L10 5L14 23L0 13L-16 22L-11 5L-24-6L-6-8Z"/>
+ <g id="pumpkin"><path d="M-3-64Q-9-91 8-97L20-89L10-63Z" fill="var(--ink)"/><path d="M-8-63C-55-88-112-44-108 22C-106 85-45 98 0 87C52 103 110 79 108 19C106-45 55-84 12-63" fill="var(--paper)" stroke="var(--ink)" stroke-width="5"/><path d="M-36-57Q-81 5-42 79M32-58Q77 7 42 80M-89-28Q-111 27-83 60M87-23Q106 26 83 61" fill="none" stroke="var(--ink)" stroke-width="3"/><path d="M-65-6L-45-37L-23-4ZM24-4L45-37L68-6ZM-10 13L1-7L13 13ZM-72 28L-42 39L-38 29L-19 36L-16 47L16 47L20 35L39 29L44 40L73 27Q56 79 1 72Q-51 76-72 28Z" fill="var(--cream)" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/></g>
+</defs>
+<rect id="background" width="1200" height="1600" fill="#ff9e19"/>
+<g id="grid-layer" opacity=".7"><rect width="1200" height="1600" fill="url(#grain)"/></g>
+<g id="lamp-layer" fill="var(--ink)" stroke="var(--ink)" stroke-linejoin="round" filter="url(#ink-edge)">
+ <path d="M965 1346L972 515H985L993 1346L1020 1404H936Z"/><path d="M965 541L944 519L935 494H1018L1009 520L988 541Z"/>
+ <path d="M917 336L1040 336L1019 493H937Z" fill="var(--cream)" stroke-width="8"/><path d="M978 337V491M918 336L941 357L949 489M1037 337L1013 355L1008 489" fill="none" stroke-width="5"/>
+ <path d="M899 336Q934 318 956 276L1000 276Q1015 313 1056 336ZM953 276L962 261L994 261L1003 276Z"/>
+ <path d="M973 263V240Q957 221 978 201Q999 223 984 241V263Z"/><path d="M949 1125L1005 1125L1015 1142L940 1142Z"/>
+ <path d="M930 1400H1026L1049 1424H909Z"/><path d="M920 1433H1039" stroke-width="7"/>
+</g>
+<g id="platform-layer" fill="var(--ink)" filter="url(#ink-edge)"><ellipse cx="590" cy="1441" rx="165" ry="5"/><path d="M144 1454h45m124-4h48m460 8h45m249-8h39" fill="none" stroke="var(--ink)" stroke-width="4"/><path d="M407 1454l15-6 18 7-21 5Zm306 7l12-5 24 7-17 7Z" fill="var(--cream)" stroke="var(--ink)" stroke-width="3"/></g>
+<g id="character-layer" aria-label="可拖动的占位人物">
+ <g id="placeholder-character"><path d="M-57-485Q-155-520-150-348L-70-395Z" fill="var(--ink)"/><path d="M-63-419L-118-172Q-39-125 87-182L54-415Z" fill="var(--ink)"/><path d="M-55-174L-23-55L3-56L-10-180ZM17-180L32-56L59-56L57-190Z" fill="var(--cream)" stroke="var(--ink)" stroke-width="4"/><path d="M-24-66L4-66L8-13L-44 0L-61-9L-46-29L-28-31ZM30-66L58-66L65-14L14 0L-1-10L16-31L29-32Z" fill="var(--ink)"/><path d="M-52-13L-12-21M7-11L49-22" stroke="var(--cream)" stroke-width="3"/>
+ <path d="M-61-403L-108-329L-178-346L-193-322L-97-287L-27-354ZM49-410L97-296L64-261L15-373Z" fill="var(--ink)"/><path d="M-177-348L-214-360L-234-345L-228-330L-190-320Z" fill="var(--cream)" stroke="var(--ink)" stroke-width="4"/>
+ <path d="M-31-448V-416L0-389L24-418V-448" fill="var(--cream)"/><ellipse cx="-7" cy="-487" rx="65" ry="76" fill="var(--cream)" stroke="var(--ink)" stroke-width="5"/>
+ <path d="M-70-470Q-93-558-14-567Q63-571 62-479L35-508L13-538L-3-509L-22-536L-42-509L-62-513Z" fill="var(--ink)"/><path d="M-64-496L-62-425L-95-413L-85-496M48-501L56-417L85-410L69-508Z" fill="var(--ink)"/>
+ <path d="M-163-555Q-63-589 136-550Q45-512-163-555Z" fill="var(--ink)"/><path d="M-86-563L-57-685Q-21-651 28-681L84-557Z" fill="var(--ink)"/><path d="M-78-591Q-6-566 68-591L78-564Q0-540-86-564Z" fill="var(--paper)"/><path d="M-28-593L-49-622L-66-604L-48-581L-27-589L-5-571L12-589L-4-609Z" fill="var(--cream)" stroke="var(--ink)" stroke-width="3"/>
+ <path d="M-40-490v19M15-490v19" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/><path d="M-23-451Q-10-442 3-452" stroke="var(--ink)" stroke-width="3" fill="none"/>
+ <path d="M-35-412L-76-390L-47-368L-11-395L18-369L47-393L13-413Z" data-accent="true" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/><path d="M-16-399L-38-321L-8-330L4-400L27-326L48-338L12-405Z" fill="var(--paper)"/>
+ <path d="M-66-200Q0-178 72-205M-62-189Q0-168 74-193" stroke="var(--cream)" stroke-width="4" fill="none"/>
+ <g transform="translate(-211 -265) scale(.48)"><path d="M-67-30Q-52-185 62-32" fill="none" stroke="var(--ink)" stroke-width="8"/><use href="#pumpkin"/></g>
+ </g><image id="custom-character" x="-220" y="-694" width="440" height="694" preserveAspectRatio="xMidYMax meet" style="display:none"/>
+</g>
+<text id="headline" x="100" y="148" font-family="Georgia,'Times New Roman',serif" font-size="100" font-weight="bold" fill="#17131c">HALLOWEEN</text>
+<g id="decoration-layer" pointer-events="none">
+ <g id="pumpkins-layer" filter="url(#ink-edge)"><use href="#pumpkin" transform="translate(276 1344) scale(1.45)"/><use href="#pumpkin" transform="translate(892 1420) scale(.57) rotate(12)"/></g>
+ <g id="bats-layer" fill="var(--ink)" filter="url(#ink-edge)"><use href="#bat" transform="translate(231 654) rotate(-27) scale(.7)"/><use href="#bat" transform="translate(799 586) rotate(9) scale(.8)"/><use href="#bat" transform="translate(814 1127) rotate(-21) scale(.62)"/><use href="#bat" transform="translate(417 503) rotate(12) scale(.45)"/></g>
+ <g id="stars-layer" fill="var(--cream)" filter="url(#ink-edge)"><use href="#spark" transform="translate(273 384) scale(.5) rotate(-13)"/><use href="#spark" transform="translate(369 442) scale(.95) rotate(12)"/><use href="#spark" transform="translate(292 560) scale(.7)"/><use href="#spark" transform="translate(1052 575) scale(.6)"/><use href="#spark" transform="translate(1039 965) scale(.95) rotate(18)"/><use href="#spark" transform="translate(287 1031) scale(.65)"/><use href="#spark" transform="translate(867 735) scale(.45)"/><path d="M133 790l17 23m0-24l-17 23m51-31l27 31m-1-31l-25 34" stroke="var(--cream)" stroke-width="4" fill="none"/><circle cx="238" cy="378" r="3"/><circle cx="335" cy="1068" r="4"/><circle cx="1024" cy="1003" r="3"/><circle cx="878" cy="762" r="4"/><circle cx="1081" cy="879" r="3"/><circle cx="199" cy="889" r="4"/></g>
+</g>
+<g id="small-type" fill="var(--ink)" font-family="'Segoe UI',Arial,sans-serif"><text id="theme-text" x="103" y="69" font-size="19" letter-spacing="5">ALL SAINTS’ WAKE</text><text id="credit-text" x="1095" y="1537" text-anchor="end" font-size="20" letter-spacing="3">FFXIV · CHARACTER COLLECTION</text></g>
+<g id="cloud-layer" pointer-events="none"><rect x="50" y="30" width="1100" height="1540" rx="3" fill="none" stroke="var(--ink)" stroke-width="1" opacity=".25"/></g>
+<g id="guide-layer" style="display:none" fill="none" stroke="#457080" stroke-width="2" stroke-dasharray="8 8" pointer-events="none"><rect x="100" y="190" width="1000" height="1260"/><path d="M600 190V1450"/><path id="foot-guide" d="M350 1440H850"/></g>
+</svg>
+   </div>
+   <div class="stage-note"><span id="asset-note">几何魔女占位 · 导入透明 PNG 替换</span><span id="layer-note">文字在人物前方</span></div>
+   <div id="status" class="status" role="status" aria-live="polite"></div>
+  </section>
+  <aside class="inspector" aria-label="原型编辑控件">
+   <details open><summary>文字</summary><div class="fields">
+    <label class="field"><span class="field-line">主标题</span><input id="title-input" type="text" value="HALLOWEEN" maxlength="40" spellcheck="false"></label>
+    <label class="field"><span class="field-line">顶部栏目</span><input id="theme-input" type="text" value="ALL SAINTS’ WAKE" maxlength="35" spellcheck="false"></label>
+    <label class="field"><span class="field-line">底部署名</span><input id="credit-input" type="text" value="FFXIV · CHARACTER COLLECTION" maxlength="45" spellcheck="false"></label>
+    <label class="field"><span class="field-line">标题大小 <output id="title-size-value">352</output></span><input id="title-size" type="range" min="40" max="130" value="100"></label>
+    <label class="field"><span class="field-line">标题下缘 <output id="title-y-value">59%</output></span><input id="title-y" type="range" min="6" max="95" step="0.5" value="9.5"></label>
+    <label class="field"><span class="field-line">标题层次</span><select id="title-layer" class="export-select"><option value="front">在人物前方</option><option value="back">在人物后方</option></select></label>
+    <p class="help">长标题自动等比缩小，保持在横向安全范围内。</p>
+   </div></details>
+   <details open><summary>配色</summary><div class="fields">
+    <div class="swatches" aria-label="配色试验"><button class="swatch" type="button" data-palette="original" aria-label="南瓜橙与墨黑" aria-pressed="true" style="--a:#ff9e19;--b:#17131c"></button><button class="swatch" type="button" data-palette="purple" aria-label="暮紫与奶油白" aria-pressed="false" style="--a:#6b487a;--b:#fff0c8"></button><button class="swatch" type="button" data-palette="paper" aria-label="旧纸与暖黑" aria-pressed="false" style="--a:#eee0be;--b:#2b2526"></button></div>
+    <label class="color-row"><span class="color-label">背景</span><span class="color-value"><output id="bg-hex">#F2F2F2</output><input id="bg-color" type="color" value="#f2f2f2"></span></label>
+    <label class="color-row"><span class="color-label">墨色 / 剪影与文字</span><span class="color-value"><output id="main-hex">#C78080</output><input id="main-color" type="color" value="#c78080"></span></label>
+    <label class="color-row"><span class="color-label">奶油色 / 星点与灯罩</span><span class="color-value"><output id="cyan-hex">#64C2CC</output><input id="cyan-color" type="color" value="#64c2cc"></span></label>
+    <label class="color-row"><span class="color-label">人物占位强调色</span><span class="color-value"><output id="accent-hex">#EDC801</output><input id="accent-color" type="color" value="#edc801"></span></label>
+   </div></details>
+   <details open><summary>人物位置</summary><div class="fields"><label class="check"><input id="mirror-scene" type="checkbox" checked>左右镜像（文字保持正常）</label>
+    <label class="field"><span class="field-line">水平位置 <output id="hero-x-value">51%</output></span><input id="hero-x" type="range" min="15" max="85" step="0.5" value="52"></label>
+    <label class="field"><span class="field-line">脚底高度 <output id="hero-y-value">76%</output></span><input id="hero-y" type="range" min="45" max="95" step="0.5" value="90"></label>
+    <label class="field"><span class="field-line">人物大小 <output id="hero-scale-value">100%</output></span><input id="hero-scale" type="range" min="50" max="200" value="170"></label>
+    <p class="help">推荐站姿或窄幅全身 PNG。横向扫帚素材需要缩小，并关闭邻近装饰。</p>
+   </div></details>
+   <details><summary>图层与辅助</summary><div class="fields">
+    <label class="check"><input id="show-grid" type="checkbox" checked>细纸纹</label><label class="check"><input id="show-character" type="checkbox" checked>人物</label><label class="check"><input id="show-lamp" type="checkbox" checked>右侧路灯</label><label class="check"><input id="show-platform" type="checkbox" checked>地面笔触</label><label class="check"><input id="show-pumpkins" type="checkbox" checked>底部南瓜</label><label class="check"><input id="show-bats" type="checkbox" checked>蝙蝠</label><label class="check"><input id="show-stars" type="checkbox" checked>星点</label><label class="check"><input id="show-decoration" type="checkbox" checked>装饰总开关</label><label class="check"><input id="show-cloud" type="checkbox">细线外框</label><label class="check"><input id="show-guides" type="checkbox">版式辅助线（不导出）</label>
+   </div></details>
+   <details open><summary>导出</summary><div class="fields"><label class="field"><span class="field-line">输出尺寸</span><select id="export-size" class="export-select"><option value="2880x3840">4K 长边 · 2880 × 3840</option><option value="2160x2880">2160 × 2880</option><option value="1200x1600">预览 · 1200 × 1600</option></select></label><p class="help">直接按目标尺寸渲染；原始 PNG 保留导入像素，文字与图形按比例生成。</p></div></details>
+   <div class="footer-action"><label class="file-button">替换为本地透明 PNG<input id="character-file" type="file" accept="image/png"></label></div>
+   <p class="hint">“保存方案”会将人物 PNG、文字、颜色、位置和图层一同保存为本地 JSON。重新打开后可读取继续编辑。</p>
+  </aside>
+ </main>
+</div>
+<script>
+(()=>{
+ 'use strict';
+ const $=id=>document.getElementById(id);
+ const poster=$('poster');
+ const defaults={title:'HALLOWEEN',theme:'ALL SAINTS’ WAKE',credit:'FFXIV · CHARACTER COLLECTION',titleSize:100,titleY:9.5,bg:'#ff9e19',main:'#17131c',cyan:'#fff0c8',accent:'#e78323',x:48,y:90,scale:170,mirror:true,titleLayer:'front',exportSize:'2880x3840'};
+ const palettes={original:{bg:'#ff9e19',main:'#17131c',cyan:'#fff0c8',accent:'#e78323'},purple:{bg:'#6b487a',main:'#17131c',cyan:'#fff0c8',accent:'#e78323'},paper:{bg:'#eee0be',main:'#2b2526',cyan:'#fff7e3',accent:'#cb762a'}};
+ let state={...defaults},customImage=null,assetMeta=null,drag=null,exporting=false;
+ const fields={'title-input':'title','theme-input':'theme','credit-input':'credit','title-size':'titleSize','title-y':'titleY','bg-color':'bg','main-color':'main','cyan-color':'cyan','accent-color':'accent','hero-x':'x','hero-y':'y','hero-scale':'scale','title-layer':'titleLayer','export-size':'exportSize','mirror-scene':'mirror'};
+ const layers={'show-grid':'grid-layer','show-character':'character-layer','show-platform':'platform-layer','show-decoration':'decoration-layer','show-cloud':'cloud-layer','show-guides':'guide-layer','show-lamp':'lamp-layer','show-pumpkins':'pumpkins-layer','show-bats':'bats-layer','show-stars':'stars-layer'};
+ function shade(hex,factor){return '#'+hex.slice(1).match(/../g).map(n=>Math.round(parseInt(n,16)*factor).toString(16).padStart(2,'0')).join('')}
+ function mix(a,b,t){return '#'+[0,2,4].map(i=>Math.round(parseInt(a.slice(i+1,i+3),16)*(1-t)+parseInt(b.slice(i+1,i+3),16)*t).toString(16).padStart(2,'0')).join('')}
+ function fitText(node,size,max){const spacing=node.id==='theme-text'?5:node.id==='credit-text'?3:0;node.setAttribute('font-size',size);node.setAttribute('letter-spacing',spacing);const width=node.getComputedTextLength();if(width>max){const ratio=max/width;node.setAttribute('font-size',Math.max(1,size*ratio));node.setAttribute('letter-spacing',spacing*ratio);}}
+ function render(){
+  poster.style.setProperty('--ink',state.main);poster.style.setProperty('--cream',state.cyan);poster.style.setProperty('--paper',state.bg);
+  $('headline').textContent=state.title;$('headline').setAttribute('y',state.titleY*16);$('headline').setAttribute('fill',state.main);fitText($('headline'),state.titleSize,1000);
+  $('theme-text').textContent=state.theme;fitText($('theme-text'),19,1000);$('credit-text').textContent=state.credit;fitText($('credit-text'),20,1000);
+  $('background').setAttribute('fill',state.bg);$('small-type').setAttribute('fill',state.main);
+  $('placeholder-character').querySelectorAll('[data-accent]').forEach(n=>n.setAttribute('fill',state.accent));
+  for(const id of ['lamp-layer','platform-layer','decoration-layer'])$(id).setAttribute('transform',state.mirror?'translate(1200 0) scale(-1 1)':'');
+  const x=state.x*12,y=state.y*16,scale=state.scale/100;
+  $('character-layer').setAttribute('transform',`translate(${x} ${y}) scale(${state.mirror?-scale:scale} ${scale})`);$('foot-guide').setAttribute('d',`M${x-250} ${y}H${x+250}`);
+  $('title-size-value').textContent=state.titleSize;$('title-y-value').textContent=state.titleY+'%';$('hero-x-value').textContent=state.x+'%';$('hero-y-value').textContent=state.y+'%';$('hero-scale-value').textContent=state.scale+'%';
+  for(const key of ['bg','main','cyan','accent'])$(key+'-hex').textContent=state[key].toUpperCase();
+  for(const [input,layer]of Object.entries(layers))$(layer).style.display=$(input).checked?'':'none';
+  $('poster-title').textContent=(state.title||'无标题')+' 角色海报';
+  poster.insertBefore($('headline'),state.titleLayer==='back'?$('character-layer'):$('decoration-layer'));$('layer-note').textContent=state.titleLayer==='back'?'标题在人物后方':'标题在人物前方';
+  $('export-meta').textContent='3:4 · 导出 '+state.exportSize.replace('x',' × ');
+  if(!exporting)$('status').textContent=y-694*scale<175?'人物接近顶部标题，可缩小人物、下移人物或调整标题位置。':'';
+ }
+ function sync(){for(const[id,key]of Object.entries(fields)){if($(id).type==='checkbox')$(id).checked=state[key];else $(id).value=state[key]}render()}
+ function clearPalette(){document.querySelectorAll('[data-palette]').forEach(b=>b.setAttribute('aria-pressed','false'))}
+ for(const[id,key]of Object.entries(fields))$(id).addEventListener('input',e=>{if(key==='mirror'){state.x=100-state.x;$('hero-x').value=state.x;}state[key]=e.target.type==='checkbox'?e.target.checked:e.target.type==='range'?Number(e.target.value):e.target.value;if(e.target.type==='color')clearPalette();render()});
+ for(const id of Object.keys(layers))$(id).addEventListener('change',render);
+ document.querySelectorAll('[data-palette]').forEach(button=>button.addEventListener('click',()=>{Object.assign(state,palettes[button.dataset.palette]);clearPalette();button.setAttribute('aria-pressed','true');sync()}));
+ function clearCharacter(){customImage=null;assetMeta=null;$('custom-character').style.display='none';$('custom-character').removeAttribute('href');$('placeholder-character').style.display='';$('character-file').value='';$('asset-note').textContent='几何魔女占位 · 导入透明 PNG 替换'}
+ $('reset').addEventListener('click',()=>{state={...defaults};clearCharacter();for(const id of Object.keys(layers))$(id).checked=!['show-guides','show-cloud'].includes(id);clearPalette();document.querySelector('[data-palette="original"]').setAttribute('aria-pressed','true');sync()});
+ function svgPoint(event){const matrix=poster.getScreenCTM();return new DOMPoint(event.clientX,event.clientY).matrixTransform(matrix.inverse())}
+ $('character-layer').addEventListener('pointerdown',e=>{if(e.button!==0)return;const p=svgPoint(e);drag={id:e.pointerId,dx:p.x-state.x*12,dy:p.y-state.y*16};poster.setPointerCapture(e.pointerId);e.preventDefault()});
+ poster.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;const p=svgPoint(e);state.x=Math.round(Math.min(85,Math.max(15,(p.x-drag.dx)/12))*2)/2;state.y=Math.round(Math.min(95,Math.max(45,(p.y-drag.dy)/16))*2)/2;$('hero-x').value=state.x;$('hero-y').value=state.y;render()});
+ for(const type of ['pointerup','pointercancel'])poster.addEventListener(type,e=>{if(drag&&drag.id===e.pointerId){drag=null;if(poster.hasPointerCapture(e.pointerId))poster.releasePointerCapture(e.pointerId)}});
+ async function useCharacter(data){
+  if(typeof data!=='string'||!/^data:image\/png;base64,[a-zA-Z0-9+/=\r\n]+$/.test(data)||data.length>45000000)throw Error('人物素材必须是有效的 PNG，且文件体积适合本地方案。');
+  const image=new Image();image.src=data;await image.decode();if(image.width*image.height>36000000)throw Error('请使用不超过 3600 万像素的 PNG。');
+  const c=document.createElement('canvas');c.width=image.width;c.height=image.height;const ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);const pixels=ctx.getImageData(0,0,c.width,c.height).data;let left=c.width,top=c.height,right=-1,bottom=-1,transparent=0;
+  for(let y=0;y<c.height;y++)for(let x=0;x<c.width;x++){const alpha=pixels[(y*c.width+x)*4+3];if(alpha<255)transparent++;if(alpha>8){left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y)}}
+  if(right<left)throw Error('这张图片完全透明。');const trimmed=document.createElement('canvas');trimmed.width=right-left+1;trimmed.height=bottom-top+1;trimmed.getContext('2d').drawImage(c,left,top,trimmed.width,trimmed.height,0,0,trimmed.width,trimmed.height);
+  customImage=trimmed.toDataURL('image/png');assetMeta={sourceWidth:image.width,sourceHeight:image.height,width:trimmed.width,height:trimmed.height};
+  const h=694,w=Math.min(650,h*trimmed.width/trimmed.height),visualH=w*trimmed.height/trimmed.width,node=$('custom-character');node.setAttribute('x',-w/2);node.setAttribute('y',-visualH);node.setAttribute('width',w);node.setAttribute('height',visualH);node.setAttribute('href',customImage);node.style.display='';$('placeholder-character').style.display='none';
+  $('asset-note').textContent=`人物素材 ${trimmed.width} × ${trimmed.height} px · 仅裁透明空边，未缩小像素`;
+  return transparent>0;
+ }
+ $('character-file').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.type!=='image/png')throw Error('请选择 PNG 图片。');const data=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(Error('图片读取失败。'));reader.readAsDataURL(file)});const transparent=await useCharacter(data);$('show-character').checked=true;render();$('status').textContent=transparent?'角色已替换。保存方案可连同 PNG 一起保留。':'未检测到透明区域，原图背景也会保留。'}catch(error){$('status').textContent=error.message}});
+ function filename(extension){return 'P02-'+(state.title.trim().replace(/[\\/:*?"<>|]/g,'').slice(0,30)||'poster')+'.'+extension}
+ function downloadBlob(blob,name){const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=name;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),15000)}
+ $('save-project').addEventListener('click',()=>{const project={type:'p02-project',version:1,state:{...state},layers:Object.fromEntries(Object.keys(layers).map(id=>[id,$(id).checked])),image:customImage,assetMeta};downloadBlob(new Blob([JSON.stringify(project,null,2)],{type:'application/json'}),filename('json'));$('status').textContent='已保存方案，包含当前人物素材、文字、配色、位置与图层。'});
+ $('open-project').addEventListener('click',()=>{$('project-file').value='';$('project-file').click()});
+ $('project-file').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{
+  if(file.size>45000000)throw Error('方案文件超过 45 MB。');const project=JSON.parse(await file.text());if(project.type!=='p02-project'||project.version!==1||!project.state||typeof project.state!=='object')throw Error('这不是支持的 P02 方案文件。');
+  const next={...defaults};for(const[id,key]of Object.entries(fields)){const value=project.state[key];if(value===undefined)continue;const input=$(id);if(input.type==='checkbox'){if(typeof value!=='boolean')throw Error('镜像选项无效。');next[key]=value}else if(input.type==='range'){if(typeof value!=='number'||!Number.isFinite(value))throw Error('方案中的数值无效。');next[key]=Math.min(Number(input.max),Math.max(Number(input.min),value))}else if(input.type==='color'){if(typeof value!=='string'||!/^#[0-9a-f]{6}$/i.test(value))throw Error('方案中的颜色无效。');next[key]=value}else if(input.tagName==='SELECT'){if(!Array.from(input.options).some(o=>o.value===value))throw Error('方案中的选项无效。');next[key]=value}else{if(typeof value!=='string')throw Error('方案中的文字无效。');next[key]=value.slice(0,input.maxLength)}}
+  if(project.image!==null&&project.image!==undefined)await useCharacter(project.image);else clearCharacter();state=next;for(const id of Object.keys(layers))$(id).checked=typeof project.layers?.[id]==='boolean'?project.layers[id]:!['show-guides','show-cloud'].includes(id);clearPalette();sync();$('status').textContent='方案已恢复，可继续编辑并导出。';
+ }catch(error){$('status').textContent='读取失败：'+error.message}});
+ $('export').addEventListener('click',async()=>{
+  if(exporting)return;exporting=true;const button=$('export');button.disabled=true;button.textContent='正在导出…';
+  try{await document.fonts.ready;const [width,height]=state.exportSize.split('x').map(Number);const clone=poster.cloneNode(true);clone.setAttribute('width',String(width));clone.setAttribute('height',String(height));clone.querySelector('#guide-layer').remove();clone.querySelector('#character-layer').removeAttribute('aria-label');const xml=new XMLSerializer().serializeToString(clone),source=new Blob([xml],{type:'image/svg+xml;charset=utf-8'}),url=URL.createObjectURL(source);try{const image=new Image();image.src=url;await image.decode();const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;canvas.getContext('2d').drawImage(image,0,0,width,height);const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw Error('PNG 生成失败。');downloadBlob(blob,filename('png'));$('status').textContent=`已生成 ${width} × ${height} PNG，辅助线不会出现在图片中。`;}finally{URL.revokeObjectURL(url)}}catch(error){$('status').textContent='导出失败：'+error.message}finally{exporting=false;button.disabled=false;button.textContent='导出 PNG'}
+ });
+ document.fonts.ready.then(render);sync();
+})();
+</script>
+</body>
+</html>

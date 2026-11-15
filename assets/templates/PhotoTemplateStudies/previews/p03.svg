@@ -1,0 +1,33 @@
+<svg id="poster" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" width="1200" height="1600" role="img" aria-labelledby="poster-title poster-description" style="--cream: #fff0ce; --gold: #d9b574; --ink: #19131c;">
+<title id="poster-title">CRIMSON SOIRÉE · 绯红夜宴</title><desc id="poster-description">可编辑的绯红夜宴邀请函。右侧拱窗用于放置透明角色 PNG，人物可越过拱框。</desc>
+<defs>
+ <path id="diamond" d="M0-16Q3-3 10 0Q3 3 0 16Q-3 3-10 0Q-3-3 0-16Z"></path><path id="bat" d="M-76-26Q-43-14-23 5L-11 3L-7-12L1-3L8-13L13 1L25 3Q46-15 76-26Q59-3 57 14Q39 4 30 23Q14 12 1 35Q-14 13-30 23Q-40 4-58 14Q-59-6-76-26Z"></path>
+ <g id="asterisk"><path d="M0-23V23M-23 0H23M-15-15L15 15M-15 15L15-15" fill="none" stroke="currentColor" stroke-width="1.5"></path><use href="#diamond" fill="currentColor" transform="scale(.36)"></use></g>
+ <filter id="paper-noise" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".6" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter>
+</defs>
+<rect id="background" width="1200" height="1600" fill="#921f32"></rect>
+<g id="arch-layer"><path id="arch-fill" fill="#c88488" d="M514 1470V708A314 314 0 0 1 1142 708V1470Z"></path><path id="arch-outline" fill="none" stroke="var(--gold)" stroke-width="2" d="M504 1480V708A324 324 0 0 1 1152 708V1480Z"></path><path id="arch-inner" fill="none" stroke="var(--gold)" stroke-width="1" opacity=".75" d="M518 1466V708A310 310 0 0 1 1138 708V1466Z"></path></g>
+<g id="texture-layer" opacity=".13" pointer-events="none"><rect width="1200" height="1600" filter="url(#paper-noise)" opacity=".65"></rect></g>
+
+<g id="headline" fill="var(--cream)" font-family="'Bodoni MT',Didot,'Times New Roman',serif"><text id="title-line-1" x="63" y="280" font-size="210" letter-spacing="-5">CRIMSON</text><text id="title-line-2" x="63" y="464.8" font-size="202.48250173188066" letter-spacing="-2.6783399699984214">SOIRÉE</text></g><g id="character-layer" aria-label="可拖动的人物图层" transform="translate(804 1472) scale(1.45 1.45)"><g id="placeholder-character"></g><image id="custom-character" preserveAspectRatio="xMidYMax meet" style="display:none"></image></g>
+<g id="decoration-layer" pointer-events="none">
+ <g id="bats-layer" fill="var(--ink)"><use href="#bat" transform="translate(1031 160) rotate(18) scale(.82)"></use><use href="#bat" transform="translate(1088 221) rotate(-18) scale(.54)"></use><use href="#bat" transform="translate(154 609) rotate(17) scale(.86)"></use><use href="#bat" transform="translate(267 729) rotate(-22) scale(.57)"></use></g>
+ <g id="stars-layer" fill="var(--gold)" color="var(--gold)"><use href="#diamond" transform="translate(817 344) scale(1.2)"></use><use href="#diamond" transform="translate(192 505) scale(.55)"></use><use href="#diamond" transform="translate(1021 271) scale(.6)"></use><use href="#diamond" transform="translate(1111 463) scale(.6)"></use><use href="#asterisk" transform="translate(105 812)"></use><path d="M105 744V887M44 555V730M1156 495V1016" stroke="var(--gold)" stroke-width="1" stroke-dasharray="2 7"></path><circle cx="105" cy="754" r="2"></circle><circle cx="984" cy="316" r="2"></circle><circle cx="1156" cy="1027" r="2"></circle><use href="#diamond" transform="translate(105 888) scale(.4)"></use><use href="#diamond" transform="translate(44 747) scale(.5)"></use></g>
+ <g id="moon-layer" fill="var(--gold)"><path d="M1103 306A46 46 0 1 0 1145 335A35 35 0 0 1 1103 306Z"></path><path d="M1120 264V301M1120 399V442" fill="none" stroke="var(--gold)" stroke-width="1"></path><use href="#diamond" transform="translate(1120 277) scale(.35)"></use><use href="#diamond" transform="translate(1120 421) scale(.35)"></use></g>
+</g>
+<g id="invitation-layer" fill="var(--cream)">
+ <path d="M86 980H211M258 980H389M160 1123H221M247 1123H309" stroke="var(--gold)" stroke-width="1"></path><use href="#diamond" fill="var(--gold)" transform="translate(235 980) scale(.65)"></use><use href="#diamond" fill="var(--gold)" transform="translate(234 1123) scale(.4)"></use>
+ <text id="invite-text" x="235" y="1045" text-anchor="middle" font-family="'Bodoni MT','Times New Roman',serif" font-size="31" letter-spacing="3">YOU ARE INVITED</text>
+ <text id="body-text" x="235" y="1092" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="23" letter-spacing="0">An evening beyond midnight.</text>
+ <text id="dress-text" x="235" y="1164" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="15" letter-spacing="5">DRESS IN THE DARK</text>
+</g>
+<g id="seal-layer" transform="translate(235 1340)" fill="none" stroke="var(--gold)">
+ <circle r="98" stroke-width="2"></circle><circle r="90" stroke-width="1"></circle><circle r="106" stroke-width="5" stroke-dasharray="1 6"></circle>
+ <path d="M-135 0H-106M106 0H135M0-135V-106M0 106V135M-52 26H52" stroke-width="1"></path>
+ <use href="#diamond" transform="translate(0 -137) scale(.55)" fill="var(--gold)" stroke="none"></use><use href="#diamond" transform="translate(0 137) scale(.55)" fill="var(--gold)" stroke="none"></use>
+ <text id="day-text" x="0" y="13" text-anchor="middle" font-family="'Bodoni MT','Times New Roman',serif" font-size="85" fill="var(--cream)" stroke="none" letter-spacing="0">31</text><text id="month-text" x="0" y="58" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="23" letter-spacing="5" fill="var(--cream)" stroke="none">OCT</text>
+</g>
+<g id="small-type" fill="var(--cream)" font-family="'Segoe UI',Arial,sans-serif"><text id="theme-text" x="137" y="88" font-size="19" letter-spacing="7">ALL SAINTS’ WAKE</text><text id="credit-text" x="600" y="1545" text-anchor="middle" font-size="14" letter-spacing="5">FFXIV · HALLOWEEN COLLECTION</text></g>
+<g id="frame-layer" fill="var(--gold)" color="var(--gold)"><path d="M78 44H392M909 44H1122M44 78V235M1156 78V153M44 1275V1518M1156 1250V1518M78 1545H327M873 1545H1122" stroke="var(--gold)" stroke-width="1" fill="none"></path><use href="#asterisk" transform="translate(44 44)"></use><use href="#asterisk" transform="translate(1156 44)"></use><use href="#asterisk" transform="translate(44 1545)"></use><use href="#asterisk" transform="translate(1156 1545)"></use><use href="#diamond" transform="translate(44 255) scale(.5)"></use><use href="#diamond" transform="translate(1156 177) scale(.4)"></use><use href="#diamond" transform="translate(349 1545) scale(.35)"></use><use href="#diamond" transform="translate(851 1545) scale(.35)"></use></g>
+<g id="guide-layer" style="display:none" fill="none" stroke="#75bbcc" stroke-width="2" stroke-dasharray="8 8" pointer-events="none"><rect x="60" y="60" width="1080" height="1480"></rect><path id="foot-guide" d="M554 1472H1054"></path></g>
+</svg>
