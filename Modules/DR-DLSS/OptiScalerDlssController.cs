@@ -29,7 +29,9 @@ public sealed class OptiScalerDlssController : ModuleBase
         Author = ["VintageVelvet"]
     };
 
-    public override ModulePermission Permission { get; } = new() { AllDefaultEnabled = true };
+    public override ModuleBehaviour Behaviour { get; } = new() { AllDefaultEnabled = true };
+
+    public override string ModuleName => nameof(OptiScalerDlssController);
 
     private Config config = null!;
     private readonly WindowRefresh refresh = new();
