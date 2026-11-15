@@ -3,5 +3,5 @@
 *.fxh text eol=lf
 *.md text eol=lf
 
-# Keep the archived baseline byte-for-byte for MANIFEST.json.
+# Preserve original bytes of archived template sources and visual assets.
 assets/templates/PhotoTemplateStudies/** -text

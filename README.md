@@ -21,9 +21,9 @@ VintageVelvet 维护的摄影与游戏工具箱，汇集 ReShade 着色器、滤
 
 着色器安装与效果排序见 [Shaders 使用入口](Shaders/README.md)。各功能的专用脚本随项目存放；从仓库根目录运行的命令见对应使用或技术文档。
 
-## 照片模板试验档案
+## 照片制作案例
 
-[PhotoTemplateStudies](assets/templates/PhotoTemplateStudies/index.html) 保存四个截图后使用的本地浏览器原型：人物大字横幅、万圣节装饰、绯红邀请函和法阵前景合成。包含默认版式预览、可编辑 HTML、方向稿和素材来源记录，用作设计基准。用浏览器打开即可，不需要安装为 ReShade 效果。使用方法见[档案说明](assets/templates/PhotoTemplateStudies/README.md)。
+[PhotoTemplateStudies](assets/templates/PhotoTemplateStudies/README.md) 保存四次照片制作的独立案例：人物大字横幅、万圣节装饰、绯红邀请函和法阵前景合成。每个案例保留可直接打开的 HTML、默认预览和相关素材，用于查阅视觉思路及复用导入、编辑、保存和导出实现。各案例入口与使用说明集中在目录 README。
 
 ## 参与维护
 

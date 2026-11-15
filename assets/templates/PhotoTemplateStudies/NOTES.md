@@ -22,3 +22,15 @@ P01、P02 为基于参考布局的个人构图练习，参考原图未纳入本�
 归档时重新检查 HTML 脚本语法、重复元素 ID、相对链接和初始预览。模板 HTML 按字节复制，功能代码未重构；MANIFEST.json 记录归档内容。
 
 画布拖动功能已接入，但此前多数功能检查使用编辑控件完成。当前档案用于回看与继续实验，没有对全部角色宽高比、浏览器或低性能设备作完整兼容测试。
+
+## 目录精简 — 2026-11-15
+
+案例入口收敛至 README，移除合集首页 `index.html`、重复元数据 `catalog.json`、首页截图 `archive-preview.png` 和整包清单 `MANIFEST.json`。四个独立 HTML、实际预览、方向稿及原始素材继续保留；上文的归档日期和检查结果仍对应当时文件。
+
+原始清单的 22 项文件字节数与 SHA-256 保存在提交 `3151b6c40c16c93f089c714ee5c1555ad11a0b5f` 中，原路径为 `assets/templates/PhotoTemplateStudies/MANIFEST.json`。移除前已核对工作区清单与该提交内容相同。需要查阅时，从仓库根目录执行：
+
+```powershell
+git show 3151b6c40c16c93f089c714ee5c1555ad11a0b5f:assets/templates/PhotoTemplateStudies/MANIFEST.json
+```
+
+当前维护按修改范围检查案例与链接，不再同步整包哈希清单。
